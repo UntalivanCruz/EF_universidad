@@ -26,14 +26,14 @@ namespace universidades.Controllers
         }
 
          [HttpPut("{id}")]
-        public IActionResult Put(Guid id,[FromBody] country updCountry){
-            countryService.Update(id,updCountry);
+        public async Task<IActionResult> Put(Guid id,[FromBody] country updCountry){
+            await countryService.Update(id,updCountry);
             return Ok();
         }
 
          [HttpDelete("{id}")]
-         public IActionResult Delete(Guid id){
-            countryService.Delete(id);
+         public async Task<IActionResult> Delete(Guid id){
+            await countryService.Delete(id);
             return Ok();
          }
     }

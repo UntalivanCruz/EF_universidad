@@ -30,6 +30,7 @@ namespace universidades.Service
             if (country != null)
             {
                 country.country_name = updCountry.country_name;
+                context.Update(country);
                 await context.SaveChangesAsync();
             }
         }
