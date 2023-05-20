@@ -6,16 +6,18 @@ namespace universidades.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class countryController: ControllerBase
+    public class countryController : ControllerBase
     {
         IcountryService countryService;
-        public countryController(IcountryService _countryService){
-            countryService=_countryService;
+        public countryController(IcountryService _countryService)
+        {
+            countryService = _countryService;
         }
 
         [HttpPost]
-        public IActionResult postCountry([FromBody] country newCountry){
-            countryService.CreateAsync(newCountry);
+        public async Task<IActionResult> postCountry([FromBody] country newCountry)
+        {
+            await countryService.CreateAsync(newCountry);
             return Ok();
         }
 
@@ -25,16 +27,18 @@ namespace universidades.Controllers
             return Ok(countryService.Get());
         }
 
-         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id,[FromBody] country updCountry){
-            await countryService.Update(id,updCountry);
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(Guid id, [FromBody] country updCountry)
+        {
+            await countryService.Update(id, updCountry);
             return Ok();
         }
 
-         [HttpDelete("{id}")]
-         public async Task<IActionResult> Delete(Guid id){
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
             await countryService.Delete(id);
             return Ok();
-         }
+        }
     }
 }
