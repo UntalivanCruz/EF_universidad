@@ -24,5 +24,17 @@ namespace universidades.Controllers
         {
             return Ok(countryService.Get());
         }
+
+         [HttpPut("{id}")]
+        public IActionResult Put(Guid id,[FromBody] country updCountry){
+            countryService.Update(id,updCountry);
+            return Ok();
+        }
+
+         [HttpDelete("{id}")]
+         public IActionResult Delete(Guid id){
+            countryService.Delete(id);
+            return Ok();
+         }
     }
 }
